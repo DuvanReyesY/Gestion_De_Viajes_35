@@ -64,4 +64,5 @@ Hotel "1" -- "*" Hospedaje : "brinda"
 Vuelo "1" -- "*" ReservaVuelo : "tiene"
 Vuelo --|> ReservaVuelo
 Hotel --|> Hospedaje
+
 @enduml
