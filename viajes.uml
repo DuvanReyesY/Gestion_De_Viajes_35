@@ -1,0 +1,67 @@
+@startuml
+class CadenaAgencias{
+    -telefono: String
+    -private List<Sucursal> sucursales;
+    -private List<Hotel> hoteles;
+    -private List<Vuelo> vuelos;
+    -private List<Turista> turistas;
+}
+
+Class Sucursal{
+    -codigo: int
+    -direccion: String
+    -telefono: String
+}
+
+Class Hotel{
+    -codigo: String
+    -nombre: String
+    -direccion: String
+    -ciudad: String
+    -telefono: String
+    -plazasAvailables: int
+    -
+}
+
+Class Vuelo{
+    -numero: String
+    -fechaHora: Date
+    -origen: String
+    -destino: String
+    -plazasTotales: int 
+    -plazasClaseTurista: int
+}
+
+Class Turista{
+    -codigo: String
+    -nombre: String
+    -apellidos: String
+    -direccion: String
+    -telefono: String
+}
+
+Class Hospedaje{
+    -
+    -fechaLlegada: Date
+    -fechaPartida: Date
+    -regimenHosp: String
+}
+
+Class ReservaVuelo{
+    -noVuelo
+    -codTurista
+    -clase: String
+}
+Sucursal "*" -- "1" CadenaAgencias : compuesta
+Hotel "*" -- "1"  CadenaAgencias : contrata
+CadenaAgencias "1" -- "*" Vuelo : contrata
+Turista "*" -- "1" Sucursal : "contrata"
+Turista "*" -- "1" Hotel : "hospeda"
+Turista "*" -- "1" Vuelo : "reserva"
+Turista "*" -- "1" Hospedaje : "tiene"
+Turista "*" -- "1" ReservaVuelo : "realiza"
+Hotel "1" -- "*" Hospedaje : "brinda"
+Vuelo "1" -- "*" ReservaVuelo : "tiene"
+Vuelo --|> ReservaVuelo
+Hotel --|> Hospedaje
+@enduml
